@@ -1,0 +1,61 @@
+.login-input {
+  width: 130px;
+}
+
+.form-button {
+  width: 80px;
+  height: 35px;
+}
+
+.signup-box {
+  margin: auto;
+  width: 325px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 10px;
+}
+
+.settings-box {
+  margin: auto;
+  width: 325px;
+}
+
+.signup-area {
+  padding: 30px;
+}
+
+.settings-area {
+  padding: 30px;
+}
+
+.csv-submit-box {
+  margin: auto;
+  height: 250px;
+  width: 270px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.margin-top-15 {
+  margin-top: 15px;
+}
+
+.margin-bottom-15 {
+  margin-bottom: 15px;
+}
