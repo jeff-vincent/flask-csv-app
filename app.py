@@ -78,6 +78,20 @@ def settings():
     return redirect(url_for('login'))
 
 
+
+# -----------Upload View------------------------------------------------------------#
+@app.route('/upload', methods=['GET', 'POST'])
+def upload():
+    if session.get('logged_in'):
+        if request.method == 'POST':
+            file = request.get['file']
+            return "file received"
+        else:
+            user = helpers.get_user()
+            return render_template('upload.html', user=user)
+    return redirect(url_for('login'))
+
+
 # ======== Main ============================================================== #
 if __name__ == "__main__":
     app.secret_key = os.urandom(12)  # Generic key for dev purposes only
