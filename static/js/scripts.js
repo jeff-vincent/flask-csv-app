@@ -25,15 +25,17 @@ var login = function() {
 };
 
 var submitData = function() {
-  fileInput = document.getElementById('fileInput')
-  file = fileInput[0]
+  var formData = new FormData();
+  formData.append('file', $('#fileInput')[0].files[0]);
   
   $.post({
     type: "POST",
     url: "/upload",
-    data: {"file": file},
+    data: formData,
+    processData: false,
+    contentType: false,
     success(response){
-      console.log(response.data)
+      console.log(response)
     }
   });
 };
