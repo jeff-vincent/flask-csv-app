@@ -1,11 +1,20 @@
-<div class="csv-submit-box">
-        <h1>Submit CSV</h1>
-        <div class="upload-btn-wrapper">
-            <button id="upload" class="btn btn-outline margin-top-15 margin-bottom-15 "> Upload CSV </button>
-            <input type="file" id="fileInput"></input>
-                 
-            <div>
+{% extends "base.html" %}
+{% block body %}
+{% include "navbar.html" %}
+{% include "sidebar.html" %}
+
+<div class="main">
+  <h1>Submit CSV</h1>
+  <div class="upload-btn-wrapper">
+      <button id="upload" class="btn btn-outline margin-top-15 margin-bottom-15 "> Upload CSV </button>
+      <input type="file" id="fileInput"></input>
+    <div>
       <button id="submitData"class="btn btn-outline margin-top-15 margin-bottom-15" onclick="submitData()">Submit Data</button>
-      </div>
     </div>
-    </div>
+  </div>
+</div>
+
+{% endblock %}
+{% block scripts %}
+<script src="../static/js/scripts.js"></script>
+{% endblock %}
