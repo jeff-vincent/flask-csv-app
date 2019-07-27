@@ -25,14 +25,15 @@ var login = function() {
 };
 
 var submitData = function() {
+  fileInput = document.getElementById('fileInput')
+  file = fileInput[0]
+  
   $.post({
     type: "POST",
-    url: "/submit",
-    data: {"csv": $("#submitData").val()},
+    url: "/upload",
+    data: {"file": file},
     success(response){
-      var status = JSON.parse(response)["status"];
-      if (status === "Login successful") { location.reload(); }
-      else { error("login-input"); }
+      console.log(response.data)
     }
   });
 };

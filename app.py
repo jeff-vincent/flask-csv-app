@@ -84,7 +84,7 @@ def settings():
 def upload():
     if session.get('logged_in'):
         if request.method == 'POST':
-            file = request.get['file']
+            file = request.args.get['file']
             return "file received"
         else:
             user = helpers.get_user()
