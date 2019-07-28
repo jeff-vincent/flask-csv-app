@@ -7,6 +7,7 @@ from flask import Flask, redirect, url_for, render_template, request, session
 import json
 import sys
 import os
+import csv, io
 
 app = Flask(__name__)
 
@@ -85,6 +86,10 @@ def upload():
     if session.get('logged_in'):
         if request.method == 'POST':
             file = request.files['file']
+            stream = io.StringIO(file.stream.read().decode("UTF8"), newline=None)
+            csv_input = csv.DictReader(stream)
+            for row in csv_input:
+                print(row)
             return "file received"
         else:
             user = helpers.get_user()
