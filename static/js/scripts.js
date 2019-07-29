@@ -35,7 +35,8 @@ var submitData = function() {
     processData: false,
     contentType: false,
     success(response){
-      console.log(response)
+      var div = document.getElementById('test');
+      div.innerHTML = response
     }
   });
 };

@@ -5,6 +5,7 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
+from flask_table import Table, Col
 
 # Local
 SQLALCHEMY_DATABASE_URI = 'sqlite:///accounts.db'
@@ -34,13 +35,20 @@ class User(Base):
     def __repr__(self):
         return '<User %r>' % self.username
 
-class CSV(Base):
+class Property(Base):
     __tablename__ = 'csv'
 
     id = Column(Integer, primary_key=True)
     csv_column_1 = Column(String(5000))
     csv_column_2 = Column(String(5000))
     csv_column_3 = Column(String(5000)) 
+
+
+class ItemTable(Table):
+    name = Col('Name')
+    description = Col('Description')
+
+
 
     
 engine = db_connect()  # Connect to database

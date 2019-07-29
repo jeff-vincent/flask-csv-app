@@ -7,7 +7,7 @@ from flask import Flask, redirect, url_for, render_template, request, session
 import json
 import sys
 import os
-import csv, io
+import csv, io, requests
 
 app = Flask(__name__)
 
@@ -89,8 +89,23 @@ def upload():
             stream = io.StringIO(file.stream.read().decode("UTF8"), newline=None)
             csv_input = csv.DictReader(stream)
             for row in csv_input:
-                print(row)
-            return "file received"
+                property_location = row['Property Location']
+                print(property_location)
+                #------------------- CALL Address API ---------------#
+                # data = {'address': property_location}
+                # r = requests.post('http://some-url.com', data)
+                # print(r.content)
+
+                #------------------- Flask_Tables -----------------------#
+                items = [dict(name='Name1', description='Description1'),
+                    dict(name='Name2', description='Description2'),
+                    dict(name='Name3', description='Description3')]
+
+                # Populate the table
+                table = tabledef.ItemTable(items)
+                html = table.__html__()
+
+            return html
         else:
             user = helpers.get_user()
             return render_template('upload.html', user=user)
