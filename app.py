@@ -88,18 +88,20 @@ def upload():
             file = request.files['file']
             stream = io.StringIO(file.stream.read().decode("UTF8"), newline=None)
             csv_input = csv.DictReader(stream)
+            items = []
             for row in csv_input:
                 property_location = row['Property Location']
                 print(property_location)
-                #------------------- CALL Address API ---------------#
+                #------------------- CALL Address Clean-up API ---------------#
                 # data = {'address': property_location}
                 # r = requests.post('http://some-url.com', data)
                 # print(r.content)
 
-                #------------------- Flask_Tables -----------------------#
-                items = [dict(name='Name1', description='Description1'),
-                    dict(name='Name2', description='Description2'),
-                    dict(name='Name3', description='Description3')]
+                #------------------- Flask_Table -----------------------#
+
+                #-----------Sample Data-------------------#
+                estate = dict(name=row['Owner(s) Name'], description=property_location)
+                items.append(estate)
 
                 # Populate the table
                 table = tabledef.ItemTable(items)
