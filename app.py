@@ -108,10 +108,10 @@ def upload():
                 #------------------- CALL Address Clean-up API ---------------#
                 # data = {'address': property_location}
                 # r = requests.post('http://some-url.com', data)
-                # print(r.content)
+                # address = r.content
 
 
-                #-----------------Insert Clean Record into MySQL------------#
+                #-----------------Insert Clean Record into MySQL--------------#
                 Session = helpers.get_session()
                 _property = tabledef.Property(
                     county=county,
@@ -127,10 +127,23 @@ def upload():
                 Session.add(_property)
                 Session.close()
 
+                errors = []
+                # Session = helpers.get_session()
+                # try:
+                #     q = Session.query(Property).filter(Property.name != 'some name')
+                #     Session.execute(q)
+                # except:
+                #     errors.append(owners_mailing_address)
+                #     continue
+                # with open('log.txt', 'w+') as log:
+                #     error_string = ''.join(errors)
+                #     log.write(error_string)
+
+
                 #------------------- Flask_Table -----------------------#
 
                 #-----------Sample Data-------------------#
-                #Creating a dict to pass to Flask Tables
+                # Creating a dict to pass to Flask Tables
                 estate = dict(
                     county=row['County'], 
                     municipality_name=row['Municipality Name'],
@@ -144,7 +157,8 @@ def upload():
                     owners_mailing_address=row['Owner(s) Mailing Address'])
                 
                 items.append(estate)
-
+                for item in items:
+                    print(item)
                 # Populate the table
                 table = tabledef.ItemTable(items)
                 html = table.__html__()
