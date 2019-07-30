@@ -15,6 +15,12 @@
   border-radius: 10px;
 }
 
+.selector {
+  height: 100px;
+  width: 100%;
+  background-color: lightblue;
+}
+
 .settings-box {
   margin: auto;
   width: 325px;

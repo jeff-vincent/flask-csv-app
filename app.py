@@ -90,17 +90,59 @@ def upload():
             csv_input = csv.DictReader(stream)
             items = []
             for row in csv_input:
+
+
+                #--------------------Parse Data----------------------#
                 property_location = row['Property Location']
-                print(property_location)
+                county = row['County']
+                municipality_name=row['Municipality Name']
+                block=row['Block']
+                lot=row['Lot']
+                qualifier=row['Qualifier']
+                owners_name=row['Owner(s) Name']
+                owners_city=row['Owner(s) City']
+                owners_state=row['Owner(s) State']
+                owners_zip=row['Owner(s) Zip']
+                owners_mailing_address=row['Owner(s) Mailing Address']
+
                 #------------------- CALL Address Clean-up API ---------------#
                 # data = {'address': property_location}
                 # r = requests.post('http://some-url.com', data)
                 # print(r.content)
 
+
+                #-----------------Insert Clean Record into MySQL------------#
+                Session = helpers.get_session()
+                _property = tabledef.Property(
+                    county=county,
+                    municipality_name=municipality_name,
+                    block=block,
+                    lot=lot,
+                    qualifier=qualifier,
+                    owners_name=owners_name,
+                    owners_city=owners_city,
+                    owners_state=owners_state,
+                    owners_zip=owners_zip,
+                    owners_mailing_address=owners_mailing_address)
+                Session.add(_property)
+                Session.close()
+
                 #------------------- Flask_Table -----------------------#
 
                 #-----------Sample Data-------------------#
-                estate = dict(name=row['Owner(s) Name'], description=property_location)
+                #Creating a dict to pass to Flask Tables
+                estate = dict(
+                    county=row['County'], 
+                    municipality_name=row['Municipality Name'],
+                    block=row['Block'],
+                    lot=row['Lot'],
+                    qualifier=row['Qualifier'],
+                    owners_name=row['Owner(s) Name'],
+                    owners_city=row['Owner(s) City'],
+                    owners_state=row['Owner(s) State'],
+                    owners_zip=row['Owner(s) Zip'],
+                    owners_mailing_address=row['Owner(s) Mailing Address'])
+                
                 items.append(estate)
 
                 # Populate the table

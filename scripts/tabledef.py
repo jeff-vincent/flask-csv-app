@@ -36,17 +36,34 @@ class User(Base):
         return '<User %r>' % self.username
 
 class Property(Base):
-    __tablename__ = 'csv'
+    __tablename__ = 'property'
 
     id = Column(Integer, primary_key=True)
-    csv_column_1 = Column(String(5000))
-    csv_column_2 = Column(String(5000))
-    csv_column_3 = Column(String(5000)) 
+    county = Column(String(50))
+    municipality_name = Column(String(50))
+    block = Column(String(50)) 
+    lot = Column(String(50))
+    qualifier = Column(String(50))
+    owners_name = Column(String(100))
+    owners_city = Column(String(50))
+    owners_state = Column(String(50))
+    owners_zip = Column(String(50))
+    owners_mailing_address = Column(String(100))
 
+    def __repr__(self):
+        return '<Property %r>' % self.id
 
 class ItemTable(Table):
-    name = Col('Name')
-    description = Col('Description')
+    county = Col('County')
+    municipality_name = Col('Municipality Name')
+    block = Col('Block')
+    lot = Col('Lot')
+    qualifier = Col('Qualifier')
+    owners_name = Col('Owner\'s Name')
+    owners_city = Col('Owner\'s City')
+    owners_state = Col('Owner\'s State')
+    owners_zip = Col('Owner\'s Zip')
+    owners_mailing_address = Col('Owner\'s Mailing Address')
 
 
 
