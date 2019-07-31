@@ -35,16 +35,20 @@ var submitData = function() {
     processData: false,
     contentType: false,
     success(response){
-      var div = document.getElementById('test');
+      var div = document.getElementById('table');
       div.innerHTML = response
+      $('#table').DataTable();
     }
   });
 };
 
 $(document).ready(function() {
+
+  
   
   $(document).on("click", "#login-button", login);
   $(document).keypress(function(e) {if(e.which === 13) {login();}});
+
   
   $(document).on("click", "#signup-button", function() {
     $.post({

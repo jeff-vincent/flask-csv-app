@@ -159,6 +159,7 @@ def upload():
                 items.append(estate)
                 for item in items:
                     print(item)
+
                 # Populate the table
                 table = tabledef.ItemTable(items)
                 html = table.__html__()
@@ -169,6 +170,20 @@ def upload():
             return render_template('upload.html', user=user)
     return redirect(url_for('login'))
 
+
+#----------------------- Query View -----------------------------------------#
+@app.route('/query', methods=['GET'])
+def query():
+    print('came through-------------------------------------------------')
+    items = []
+    Session = helpers.get_session()
+    estates = Session.query(tabledef.Property).filter_by(id=1)
+
+    # Populate the table
+    table = tabledef.ItemTable(estates)
+    html = table.__html__()
+
+    return html
 
 # ======== Main ============================================================== #
 if __name__ == "__main__":
