@@ -157,8 +157,6 @@ def upload():
                     owners_mailing_address=row['Owner(s) Mailing Address'])
                 
                 items.append(estate)
-                for item in items:
-                    print(item)
 
                 # Populate the table
                 table = tabledef.ItemTable(items)

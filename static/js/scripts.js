@@ -27,6 +27,9 @@ var login = function() {
 var submitData = function() {
   var formData = new FormData();
   formData.append('file', $('#fileInput')[0].files[0]);
+
+  var table = document.getElementById('table')
+  table.innerHTML = ''
   
   $.post({
     type: "POST",
@@ -38,6 +41,9 @@ var submitData = function() {
       var div = document.getElementById('table');
       div.innerHTML = response
       $('#table').DataTable();
+
+      var controls = document.getElementById('uploadControls')
+      controls.className = 'hidden'
     }
   });
 };
