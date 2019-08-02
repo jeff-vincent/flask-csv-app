@@ -1,29 +1,19 @@
 <div class='jumbotron'>
     <h1 style="padding:5px;">Query Selector</h1>
-        <form action="submit">
-    <select>
+
+    <select class="btn dropdown-toggle">
             <option value="name">Name</option>
             <option value="owner">Owner</option>
             <option value="address">Address</option>
             <option value="city">City</option>
     </select>
-    <select>
+    <select class="btn dropdown-toggle">
             <option value="name">And</option>
             <option value="owner">Or</option>
             <option value="">Not</option>
             <option value="audi">Like</option>
     </select>
-    <select>
-            <option value="name">Name</option>
-            <option value="owner">Owner</option>
-            <option value="address">Address</option>
-            <option value="city">City</option>
-            <option value="name">And</option>
-            <option value="owner">Or</option>
-            <option value="">Not</option>
-            <option value="audi">Like</option>
-    </select>
-    <select>
+    <select class="btn dropdown-toggle">
             <option value="name">Name</option>
             <option value="owner">Owner</option>
             <option value="address">Address</option>
@@ -33,6 +23,19 @@
             <option value="">Not</option>
             <option value="audi">Like</option>
     </select>
-    <input type='submit' value='Submit' formmethod="GET" formaction="/query">
-</form>
+    <select class="btn dropdown-toggle">
+            <option value="name">Name</option>
+            <option value="owner">Owner</option>
+            <option value="address">Address</option>
+            <option value="city">City</option>
+            <option value="name">And</option>
+            <option value="owner">Or</option>
+            <option value="">Not</option>
+            <option value="audi">Like</option>
+    </select>
+        <button class="btn" id="submitQuery" onclick="submitQuery()">
+                Submit
+        </button>
 </div>
+
+        

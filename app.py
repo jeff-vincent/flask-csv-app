@@ -125,6 +125,7 @@ def upload():
                     owners_zip=owners_zip,
                     owners_mailing_address=owners_mailing_address)
                 Session.add(_property)
+                Session.commit()
                 Session.close()
 
                 errors = []
@@ -170,15 +171,15 @@ def upload():
 
 
 #----------------------- Query View -----------------------------------------#
-@app.route('/query', methods=['GET'])
+@app.route('/query', methods=['POST'])
 def query():
     print('came through-------------------------------------------------')
     items = []
     Session = helpers.get_session()
-    estates = Session.query(tabledef.Property).filter_by(id=1)
+    estates = Session.query(tabledef.Property).all()
 
     # Populate the table
-    table = tabledef.ItemTable(estates)
+    table = tabledef.ItemTable(estates, table_id='table')
     html = table.__html__()
 
     return html

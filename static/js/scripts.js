@@ -48,10 +48,32 @@ var submitData = function() {
   });
 };
 
-$(document).ready(function() {
+var submitQuery = function() {
 
+  var table = document.getElementById('table')
+  table.innerHTML = ''
+
+  var formData = new FormData();
+  formData.append('test', 'test_value')
   
+  $.post({
+    type: "POST",
+    url: "/query",
+    data: formData,
+    processData: false,
+    contentType: false,
+    success(response){
+      var div = document.getElementById('table');
+      div.innerHTML = response
+      $('#table').DataTable();
+
+    }
+  });
+};
+
+$(document).ready(function() {
   
+
   $(document).on("click", "#login-button", login);
   $(document).keypress(function(e) {if(e.which === 13) {login();}});
 
