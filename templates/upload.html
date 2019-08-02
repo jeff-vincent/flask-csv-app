@@ -4,20 +4,29 @@
 {% include "sidebar.html" %}
 
 <div id="uploadControls" class="main">
-  <h1>Upload</h1>
 
-  <div class="upload-btn-wrapper">
-      <button id="upload" class="btn btn-outline margin-top-15 margin-bottom-15 "> Upload CSV </button>
-      <input type="file" id="fileInput"></input>
-  </div>
-  <div>
-    <button id="submitData"class="btn btn-outline margin-top-15 margin-bottom-15" onclick="submitData()">Submit Data</button>
+  <div class="card" style="width: 12rem; margin-bottom: 15px; background-color: #E9ECEF">
+    <div class="card-body">
+      <h5 class="card-title">Upload</h5>
+      <div class="upload-btn-wrapper">
+        <button id="upload" class="btn btn-outline margin-top-15 margin-bottom-15 "> Upload CSV </button>
+        <input type="file" id="fileInput"></input>
+    </div>
+    <div>
+      <button id="submitData"class="btn btn-outline margin-top-15 margin-bottom-15" onclick="submitData()">Submit Data</button>
+    </div>
+    </div>
   </div>
 
-
   <div class="input-group mb-3">
     <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Column Name</span>
+      <span class="input-group-text" id="basic-addon1">County</span>
+    </div>
+    <input type="text" class="form-control" placeholder="County" aria-label="column-name" aria-describedby="basic-addon1">
+  </div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Municipality</span>
     </div>
     <input type="text" class="form-control" placeholder="Column Name" aria-label="column-name" aria-describedby="basic-addon1">
   </div>
@@ -39,151 +48,6 @@
     </div>
     <input type="text" class="form-control" placeholder="Column Name" aria-label="column-name" aria-describedby="basic-addon1">
   </div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Column Name</span>
-    </div>
-    <input type="text" class="form-control" placeholder="Column Name" aria-label="column-name" aria-describedby="basic-addon1">
-  </div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Column Name</span>
-    </div>
-    <input type="text" class="form-control" placeholder="Column Name" aria-label="column-name" aria-describedby="basic-addon1">
-  </div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Column Name</span>
-    </div>
-    <input type="text" class="form-control" placeholder="Column Name" aria-label="column-name" aria-describedby="basic-addon1">
-  </div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Column Name</span>
-    </div>
-    <input type="text" class="form-control" placeholder="Column Name" aria-label="column-name" aria-describedby="basic-addon1">
-  </div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Column Name</span>
-    </div>
-    <input type="text" class="form-control" placeholder="Column Name" aria-label="column-name" aria-describedby="basic-addon1">
-  </div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Column Name</span>
-    </div>
-    <input type="text" class="form-control" placeholder="Column Name" aria-label="column-name" aria-describedby="basic-addon1">
-  </div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Column Name</span>
-    </div>
-    <input type="text" class="form-control" placeholder="Column Name" aria-label="column-name" aria-describedby="basic-addon1">
-  </div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Column Name</span>
-    </div>
-    <input type="text" class="form-control" placeholder="Column Name" aria-label="column-name" aria-describedby="basic-addon1">
-  </div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Column Name</span>
-    </div>
-    <input type="text" class="form-control" placeholder="Column Name" aria-label="column-name" aria-describedby="basic-addon1">
-  </div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Column Name</span>
-    </div>
-    <input type="text" class="form-control" placeholder="Column Name" aria-label="column-name" aria-describedby="basic-addon1">
-  </div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Column Name</span>
-    </div>
-    <input type="text" class="form-control" placeholder="Column Name" aria-label="column-name" aria-describedby="basic-addon1">
-  </div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Column Name</span>
-    </div>
-    <input type="text" class="form-control" placeholder="Column Name" aria-label="column-name" aria-describedby="basic-addon1">
-  </div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Column Name</span>
-    </div>
-    <input type="text" class="form-control" placeholder="Column Name" aria-label="column-name" aria-describedby="basic-addon1">
-  </div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Column Name</span>
-    </div>
-    <input type="text" class="form-control" placeholder="Column Name" aria-label="column-name" aria-describedby="basic-addon1">
-  </div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Column Name</span>
-    </div>
-    <input type="text" class="form-control" placeholder="Column Name" aria-label="column-name" aria-describedby="basic-addon1">
-  </div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Column Name</span>
-    </div>
-    <input type="text" class="form-control" placeholder="Column Name" aria-label="column-name" aria-describedby="basic-addon1">
-  </div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Column Name</span>
-    </div>
-    <input type="text" class="form-control" placeholder="Column Name" aria-label="column-name" aria-describedby="basic-addon1">
-  </div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Column Name</span>
-    </div>
-    <input type="text" class="form-control" placeholder="Column Name" aria-label="column-name" aria-describedby="basic-addon1">
-  </div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Column Name</span>
-    </div>
-    <input type="text" class="form-control" placeholder="Column Name" aria-label="column-name" aria-describedby="basic-addon1">
-  </div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Column Name</span>
-    </div>
-    <input type="text" class="form-control" placeholder="Column Name" aria-label="column-name" aria-describedby="basic-addon1">
-  </div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Column Name</span>
-    </div>
-    <input type="text" class="form-control" placeholder="Column Name" aria-label="column-name" aria-describedby="basic-addon1">
-  </div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Column Name</span>
-    </div>
-    <input type="text" class="form-control" placeholder="Column Name" aria-label="column-name" aria-describedby="basic-addon1">
-  </div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Column Name</span>
-    </div>
-    <input type="text" class="form-control" placeholder="Column Name" aria-label="column-name" aria-describedby="basic-addon1">
-  </div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Column Name</span>
-    </div>
-    <input type="text" class="form-control" placeholder="Column Name" aria-label="column-name" aria-describedby="basic-addon1">
-  </div>
-  
 
 
 </div>
