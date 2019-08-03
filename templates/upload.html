@@ -2,21 +2,47 @@
 {% block body %}
 {% include "navbar.html" %}
 {% include "sidebar.html" %}
-
-<div id="uploadControls" class="main">
-
-  <div class="card" style="width: 12rem; margin-bottom: 15px; background-color: #E9ECEF">
+<div class="main">
+<div id="uploadControls" class="container">
+    <div class="row">
+      
+        <div class="col-sm-4">
+  <div class="card" style="width: 12rem;  background-color: #E9ECEF">
     <div class="card-body">
-      <h5 class="card-title">Upload</h5>
+      <div style="height: 19px;"></div>
       <div class="upload-btn-wrapper">
-        <button id="upload" class="btn btn-outline margin-top-15 margin-bottom-15 "> Upload CSV </button>
+        <button id="upload" class="btn btn-outline "> Upload CSV </button>
         <input type="file" id="fileInput"></input>
-    </div>
-    <div>
-      <button id="submitData"class="btn btn-outline margin-top-15 margin-bottom-15" onclick="submitData()">Submit Data</button>
     </div>
     </div>
   </div>
+  </div>
+  <div class="col-sm-4">
+
+  <div class="card" style="width: 23rem; margin-bottom: 15px; margin-left: -170px; background-color: #E9ECEF">
+      <div class="card-body">
+
+      <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+          <label class="form-check-label" for="inlineCheckbox1">1</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+          <label class="form-check-label" for="inlineCheckbox2">2</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" >
+          <label class="form-check-label" for="inlineCheckbox3">3</label>
+        </div>
+      </div>
+      <button id="setCSVType"class="btn btn-outline" onclick="setCSVType()">Set CSV Type</button>
+    </div>
+  </div>
+      <div>
+          <button style="margin-left: -170px; margin-bottom: -132px" id="submitData"class="btn btn-outline-success margin-top-15" onclick="submitData()">Submit Data</button>
+        </div>
+
+</div>
 
   <div class="input-group mb-3">
     <div class="input-group-prepend">
@@ -26,31 +52,68 @@
   </div>
   <div class="input-group mb-3">
     <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Municipality</span>
+      <span class="input-group-text" id="basic-addon1">Municipality Name</span>
     </div>
-    <input type="text" class="form-control" placeholder="Municipality" aria-label="column-name" aria-describedby="basic-addon1">
+    <input type="text" class="form-control" placeholder="Municipality Name" aria-label="column-name" aria-describedby="basic-addon1">
   </div>
   <div class="input-group mb-3">
     <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Column Name</span>
+      <span class="input-group-text" id="basic-addon1">Block</span>
     </div>
-    <input type="text" class="form-control" placeholder="Column Name" aria-label="column-name" aria-describedby="basic-addon1">
+    <input type="text" class="form-control" placeholder="Block" aria-label="column-name" aria-describedby="basic-addon1">
   </div>
   <div class="input-group mb-3">
     <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Column Name</span>
+      <span class="input-group-text" id="basic-addon1">Lot</span>
     </div>
-    <input type="text" class="form-control" placeholder="Column Name" aria-label="column-name" aria-describedby="basic-addon1">
+    <input type="text" class="form-control" placeholder="Lot" aria-label="column-name" aria-describedby="basic-addon1">
   </div>
   <div class="input-group mb-3">
     <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Column Name</span>
+      <span class="input-group-text" id="basic-addon1">Qualifier</span>
     </div>
-    <input type="text" class="form-control" placeholder="Column Name" aria-label="column-name" aria-describedby="basic-addon1">
+    <input type="text" class="form-control" placeholder="Qualifier" aria-label="column-name" aria-describedby="basic-addon1">
   </div>
-
-
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Owner's Name</span>
+    </div>
+    <input type="text" class="form-control" placeholder="Owner's Name" aria-label="column-name" aria-describedby="basic-addon1">
+  </div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Owner's City</span>
+    </div>
+    <input type="text" class="form-control" placeholder="Owner's City" aria-label="column-name" aria-describedby="basic-addon1">
+  </div>
+  <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Owner's State</span>
+      </div>
+      <input type="text" class="form-control" placeholder="Owner's State" aria-label="column-name" aria-describedby="basic-addon1">
+    </div>
+  <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Owner's Zip</span>
+      </div>
+      <input type="text" class="form-control" placeholder="Owner's Zip" aria-label="column-name" aria-describedby="basic-addon1">
+    </div>
+  <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Owner's Mailing Address</span>
+      </div>
+      <input type="text" class="form-control" placeholder="Owner's Mailing Address" aria-label="column-name" aria-describedby="basic-addon1">
+    </div>
+  <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">City</span>
+      </div>
+      <input type="text" class="form-control" placeholder="City" aria-label="column-name" aria-describedby="basic-addon1">
+    </div>
 </div>
+</div>
+
+
 
 
 </div>
