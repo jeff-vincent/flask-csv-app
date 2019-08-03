@@ -33,7 +33,7 @@ def login():
             return json.dumps({'status': 'Both fields required'})
         return render_template('login.html', form=form)
     user = helpers.get_user()
-    return render_template('home.html', user=user)
+    return render_template('query.html', user=user)
 
 
 @app.route("/logout")
@@ -173,8 +173,11 @@ def upload():
 #----------------------- Query View -----------------------------------------#
 @app.route('/query', methods=['POST'])
 def query():
-    print('came through-------------------------------------------------')
-    items = []
+
+    #------------------- Parse Request -----------------------#
+
+
+
     Session = helpers.get_session()
     estates = Session.query(tabledef.Property).all()
 
