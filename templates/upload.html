@@ -4,22 +4,23 @@
 {% include "sidebar.html" %}
 <div class="main">
 <div id="uploadControls" class="container">
-    <div class="row">
+    <div class="row" style="background-color:#373944; padding: 15px; margin-bottom: 15px; margin-left: -50px;border-radius: 10px;">
       
         <div class="col-sm-4">
-  <div class="card" style="width: 12rem;  background-color: #E9ECEF">
+  <div class="card" style="width: 15rem; margin-bottom: 15px; background-color: #E9ECEF">
     <div class="card-body">
-      <div style="height: 19px;"></div>
+      
       <div class="upload-btn-wrapper">
-        <button id="upload" class="btn btn-outline "> Upload CSV </button>
+        <button id="upload" class="btn btn-warning"> Upload CSV </button>
         <input type="file" id="fileInput"></input>
+        <div style="height: 44px"></div>
     </div>
     </div>
   </div>
   </div>
   <div class="col-sm-4">
 
-  <div class="card" style="width: 23rem; margin-bottom: 15px; margin-left: -170px; background-color: #E9ECEF">
+  <div class="card" style="width: 30rem; margin-bottom: 15px; margin-left: -65px; background-color: #E9ECEF">
       <div class="card-body">
 
       <div class="form-check form-check-inline">
@@ -34,12 +35,53 @@
           <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" >
           <label class="form-check-label" for="inlineCheckbox3">3</label>
         </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+            <label class="form-check-label" for="inlineCheckbox1">4</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+            <label class="form-check-label" for="inlineCheckbox2">5</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" >
+            <label class="form-check-label" for="inlineCheckbox3">6</label>
+          </div>
+          <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+              <label class="form-check-label" for="inlineCheckbox2">7</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                <label class="form-check-label" for="inlineCheckbox1">8</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                <label class="form-check-label" for="inlineCheckbox2">9</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" >
+                <label class="form-check-label" for="inlineCheckbox3">10</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                  <label class="form-check-label" for="inlineCheckbox2">11</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                    <label class="form-check-label" for="inlineCheckbox2">12</label>
+                  </div>
+            
       </div>
-      <button id="setCSVType"class="btn btn-outline" onclick="setCSVType()">Set CSV Type</button>
+      <button id="setCSVType"class="btn btn-outline" onclick="setCSVType()">Set CSV Origin</button>
     </div>
   </div>
+  <div class="card" style="width: 15rem; margin-bottom: 15px; margin-left: -150; background-color: #E9ECEF">
+      <div class="card-body">
       <div>
-          <button style="margin-left: -170px; margin-bottom: -132px" id="submitData"class="btn btn-outline-success margin-top-15" onclick="submitData()">Submit Data</button>
+          <button id="submitData"class="btn btn-outline-success " onclick="submitData()">Submit Data</button>
+        </div>
+        </div>
         </div>
 
 </div>
