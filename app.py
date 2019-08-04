@@ -187,6 +187,15 @@ def query():
 
     return html
 
+
+
+
+
+#--------------------- Config View -------------------------------------------#
+@app.route('/config', methods=['GET', 'POST'])
+def config():
+    return render_template('config.html')
+
 # ======== Main ============================================================== #
 if __name__ == "__main__":
     app.secret_key = os.urandom(12)  # Generic key for dev purposes only
