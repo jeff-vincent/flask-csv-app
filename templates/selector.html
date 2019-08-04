@@ -1,4 +1,4 @@
-<div class='jumbotron' style="margin-left: 400px; width: 700px; background-color: #373944;   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+<div id="queryControls" class='card' style="margin-left: 400px; background-color: #373944;   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 ">
     <h5 style="padding:5px; color: #818181">Query Selector</h5>
 <div style="margin-top: 15px;">
@@ -20,6 +20,9 @@
         <option value="=">=</option>
         <option value=">">></option>
         <option value="<"><</option>
+        <option value="<"><</option>
+        <option value=">=">>=</option>
+        <option value="<="><=</option>
     </select>  
     <input id="q3"type="text"> 
 
@@ -50,6 +53,9 @@
                 <option value="=">=</option>
                 <option value=">">></option>
                 <option value="<"><</option>
+                <option value="<"><</option>
+                <option value=">=">>=</option>
+                <option value="<="><=</option>
         </select>  
         <input id="q7" type="text"> 
             
@@ -58,11 +64,10 @@
                     <option value="AND">And</option>
                     <option value="OR">Or</option>
                 </select>  
-                </div>
-                <div style="margin-top: 15px;">
+        </div>
+<div style="margin-top: 15px;">
         <select id="q9" class="btn dropdown-toggle">
-                        <option value=""></option>
-
+                <option value=""></option>
                 <option value="property.county">County</option>
                 <option value="municipality_name">Municipality Name</option>
                 <option value="block">Block</option>
@@ -81,14 +86,11 @@
                 <option value="=">=</option>
                 <option value=">">></option>
                 <option value="<"><</option>
+                <option value=">=">>=</option>
+                <option value="<="><=</option>
         </select>  
         <input id="q11" type="text"> 
         
-        <select id="q12"class="btn dropdown-toggle">
-                <option value=""></option>
-                <option value="AND">And</option>
-                <option value="OR">Or</option>
-        </select>  
         </div>
         <button style="margin-top: 15px;" class="btn" id="submitQuery" onclick="submitQuery()">
                 Submit

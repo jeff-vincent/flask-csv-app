@@ -66,6 +66,11 @@ var submitQuery = function() {
   var formData = new FormData();
   formData.append('query_string', queryString)
 
+  var controls = document.getElementById('queryControls')
+  controls.innerHTML = '<h3 style="color: #818181"> Query: ' + queryString + '</h3>'
+
+  document.getElementById('table').innerHTML = '<h3 class="text-success">Processing...</h3>'
+
   $.post({
     type: "POST",
     url: "/query",
@@ -76,6 +81,8 @@ var submitQuery = function() {
       var div = document.getElementById('table');
       div.innerHTML = response
       $('#table').DataTable();
+
+
 
     }
   });
