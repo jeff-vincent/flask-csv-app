@@ -53,26 +53,15 @@ var submitQuery = function() {
   var table = document.getElementById('table')
   table.innerHTML = ''
   var queryList = []
-
-  var q1 = document.getElementById('q1').value
-  if (q1){
-    console.log(q1)
-  }
-  // var q2 = document.getElementById('q2').value
-  // queryList.push(q2)
-  // var q3 = document.getElementById('q3').value
-  // queryList.push(q3)
-  // var q4 = document.getElementById('q4').value
-  // queryList.push(q4)
-  // var q5 = document.getElementById('q5').value
-  // queryList.push(q5)
-  // var q6 = document.getElementById('q6').value
-  // queryList.push(q6)
-  var q7 = document.getElementById('q7').value
-  if (q7){
-    console.log(q1)
-  }
-  queryString = queryList.join()
+  for (var i = 1; i < 12; i++){
+    var id = 'q' + i
+    var value = document.getElementById(id).value
+    if (value != '') {
+      queryList.push(value);
+    };
+  };
+  
+  queryString = ' ' + queryList.join(' ') + ';'
   console.log(queryString)
   var formData = new FormData();
   formData.append('query_string', queryString)

@@ -175,11 +175,12 @@ def upload():
 def query():
 
     #------------------- Parse Request -----------------------#
+    query_string = request.form['query_string']
 
-
+    sql_query = 'SELECT * FROM property WHERE' + query_string
 
     Session = helpers.get_session()
-    estates = Session.query(tabledef.Property).all()
+    estates = Session.execute(sql_query)
 
     # Populate the table
     table = tabledef.ItemTable(estates, table_id='table')
