@@ -2,20 +2,21 @@
 ">
     <h5 style="padding:5px; color: #818181">Query Selector</h5>
 
-    <select class="btn dropdown-toggle">
-            <option value="name">County</option>
-            <option value="owner">Municipality Name</option>
-            <option value="address">Block</option>
-            <option value="city">Lot</option>
-            <option value="city">Qualifier</option>
-            <option value="city">Owner's Name</option>
-            <option value="city">Owner's City</option>
-            <option value="city">Owner's State</option>
-            <option value="city">Owner's Zip</option>
-            <option value="city">Owner's Mailing Address</option>
+    <select id="q1" class="btn dropdown-toggle">
+            <option value="county">County</option>
+            <option value="municipality_name">Municipality Name</option>
+            <option value="block">Block</option>
+            <option value="lot">Lot</option>
+            <option value="qualifier">Qualifier</option>
+            <option value="owners_name">Owner's Name</option>
+            <option value="owners_city">Owner's City</option>
+            <option value="owners_state">Owner's State</option>
+            <option value="owners_zip">Owner's Zip</option>
+            <option value="owners_mailing_address">Owner's Mailing Address</option>
             <option value="city">City</option>
     </select>
-    <select class="btn dropdown-toggle">
+    <select id="q2"class="btn dropdown-toggle">
+            <option value=""></option>
             <option value="and">And</option>
             <option value="or">Or</option>
             <option value="not">Not</option>
@@ -23,17 +24,19 @@
             <option value="greater">></option>
             <option value="less"><</option>
     </select>
-    <select class="btn dropdown-toggle">
-        <option value="name">County</option>
-        <option value="owner">Municipality Name</option>
-        <option value="address">Block</option>
-        <option value="city">Lot</option>
-        <option value="city">Qualifier</option>
-        <option value="city">Owner's Name</option>
-        <option value="city">Owner's City</option>
-        <option value="city">Owner's State</option>
-        <option value="city">Owner's Zip</option>
-        <option value="city">Owner's Mailing Address</option>
+    <select id="q3"class="btn dropdown-toggle">
+        <option value=""></option>
+        <option value="county">County</option>
+        <option value="municipality_name">Municipality Name</option>
+        <option value="block">Block</option>
+        <option value="lot">Lot</option>
+        <option value="qualifier">Qualifier</option>
+        <option value="owners_name">Owner's Name</option>
+        <option value="owners_city">Owner's City</option>
+        <option value="owners_state">Owner's State</option>
+        <option value="owners_zip">Owner's Zip</option>
+        <option value="owners_mailing_address">Owner's Mailing Address</option>
+        <option value="city">City</option>
         <option value="city">City</option>
         <option value="and">And</option>
         <option value="or">Or</option>
@@ -42,18 +45,18 @@
         <option value="greater">></option>
         <option value="less"><</option>
     </select>
-    <select class="btn dropdown-toggle">
-        <option value="none"></option>
-        <option value="name">County</option>
-        <option value="owner">Municipality Name</option>
-        <option value="address">Block</option>
-        <option value="city">Lot</option>
-        <option value="city">Qualifier</option>
-        <option value="city">Owner's Name</option>
-        <option value="city">Owner's City</option>
-        <option value="city">Owner's State</option>
-        <option value="city">Owner's Zip</option>
-        <option value="city">Owner's Mailing Address</option>
+    <select id="q4"class="btn dropdown-toggle">
+        <option value=""></option>
+        <option value="county">County</option>
+        <option value="municipality_name">Municipality Name</option>
+        <option value="block">Block</option>
+        <option value="lot">Lot</option>
+        <option value="qualifier">Qualifier</option>
+        <option value="owners_name">Owner's Name</option>
+        <option value="owners_city">Owner's City</option>
+        <option value="owners_state">Owner's State</option>
+        <option value="owners_zip">Owner's Zip</option>
+        <option value="owners_mailing_address">Owner's Mailing Address</option>
         <option value="city">City</option>
         <option value="and">And</option>
         <option value="or">Or</option>
@@ -62,7 +65,7 @@
         <option value="greater">></option>
         <option value="less"><</option>
     </select>
-    <select class="btn dropdown-toggle">
+    <select id="q5"class="btn dropdown-toggle">
         <option value="none"></option>
         <option value="name">County</option>
         <option value="owner">Municipality Name</option>
@@ -82,7 +85,7 @@
         <option value="greater">></option>
         <option value="less"><</option>
 </select>
-<select class="btn dropdown-toggle">
+<select id="q6"class="btn dropdown-toggle">
         <option value="none"></option>
         <option value="and">And</option>
         <option value="or">Or</option>
@@ -95,7 +98,7 @@
                 <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">Like</span>
                 </div>
-        <input type="text" class="form-control" placeholder="..." aria-label="column-name" aria-describedby="basic-addon1">
+        <input id="q7" type="text" class="form-control" placeholder="..." aria-label="column-name" aria-describedby="basic-addon1">
       </div>
         <button class="btn" id="submitQuery" onclick="submitQuery()">
                 Submit

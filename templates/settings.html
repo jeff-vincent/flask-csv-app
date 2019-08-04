@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 {% block body %}
 {% include "navbar.html" %}
-<title>Flaskex</title>
-<section class="hero is-primary is-bold is-small">
-  <div class="hero-body">
+<title>Flask CSV App</title>
+<section class="hero is-primary is-bold is-small" >
+  <div class="hero-body" style="background-color:#373944;">
     <div class="container has-text-centered">
       <div id="settings" class="settings-box">
         <div class="settings-area">    
           <h1 class="title">Settings</h1>         
           <div class="field">
             <p class="control has-icons-left">
-              <input id="settings-user" class="input is-success" type="text" placeholder="{{user.username}}" readonly="readonly">
+              <input id="settings-user" class="input" type="text" placeholder="{{user.username}}" readonly="readonly">
               <span class="icon is-small is-left">
                 <i class="fa fa-user"></i>
               </span>
@@ -18,7 +18,7 @@
           </div>
           <div class="field">
             <p class="control has-icons-left">
-              <input id="settings-mail" class="input is-success" type="text" placeholder="{{user.email}}">
+              <input id="settings-mail" class="input" type="text" placeholder="{{user.email}}">
               <span class="icon is-small is-left">
                 <i class="fa fa-envelope"></i>
               </span>
