@@ -62,14 +62,20 @@ var submitQuery = function() {
   };
   
   queryString = ' ' + queryList.join(' ') + ';'
-  console.log(queryString)
+
   var formData = new FormData();
   formData.append('query_string', queryString)
 
   var controls = document.getElementById('queryControls')
-  controls.innerHTML = '<h3 style="color: #818181"> Query: ' + queryString + '</h3>'
+  controls.className = ''
+  controls.style = ''
+  controls.innerHTML = `
+                <div style="margin-bottom: 15px; border-radius: 10px; background-color: #818181; padding: 15px;">
+                  <p style="color: #111111; height: 35px;"> Query: ` + queryString + `</p>
+                </div>`
 
-  document.getElementById('table').innerHTML = '<h3 class="text-success">Processing...</h3>'
+  document.getElementById('table').innerHTML = `
+                <div style="margin: 100px;margin-left: 250px;" class="loader"></div>`
 
   $.post({
     type: "POST",
@@ -81,9 +87,6 @@ var submitQuery = function() {
       var div = document.getElementById('table');
       div.innerHTML = response
       $('#table').DataTable();
-
-
-
     }
   });
 };
