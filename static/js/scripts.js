@@ -25,11 +25,16 @@ var login = function() {
 };
 
 var submitData = function() {
+
   var formData = new FormData();
   formData.append('file', $('#fileInput')[0].files[0]);
 
   var table = document.getElementById('table')
   table.innerHTML = ''
+  table.className = ''
+  
+  document.getElementById('inputRows').className = 'spinner'
+  
   
   $.post({
     type: "POST",
@@ -48,34 +53,98 @@ var submitData = function() {
   });
 };
 
-var submitQuery = function() {
+const submitQuery = function() {
+  var columnList = []
+  $("#q1 > option").each(function() {
+    columnList.push(this.value);
+  });
 
-  var table = document.getElementById('table')
+  const table = document.getElementById('table')
   table.innerHTML = ''
-  var queryList = []
-  for (var i = 1; i < 12; i++){
-    var id = 'q' + i
-    var value = document.getElementById(id).value
+  let queryList = []
+  for (let i = 1; i < 12; i++){
+    const id = 'q' + i
+    const value = document.getElementById(id).value
     if (value != '') {
       queryList.push(value);
     };
   };
-  
-  queryString = ' ' + queryList.join(' ') + ';'
+  let queryString = ' ' + queryList.join(' ')
 
-  var formData = new FormData();
+  console.log(queryString)
+
+  var excludeList = []
+  for (let i = 1; i < 4; i++){
+    const id = 'c' + i
+    const value = document.getElementById(id).value
+    if (value != '') {
+      excludeList.push(value);
+    };
+  };
+
+  if (excludeList != []) {
+    includeList = []
+    for (let i = 0; i < excludeList.length; i++){
+      for (let ii = 0; ii < columnList.length; ii++){
+        if (excludeList[i] == columnList[ii]){
+          continue
+        }
+        else {
+          includeList.push(columnList[ii])
+        }
+      }
+    }
+    includeString = includeList.join(', ');
+    queryStringLimited = 'SELECT ' + includeString + ' FROM property;'
+
+    let formData = new FormData();
+    formData.append('query_string', queryStringLimited)
+
+    let controls = document.getElementById('queryControls')
+    controls.className = ''
+    controls.style = ''
+    controls.innerHTML = `
+                  <div style="margin-bottom: 15px; border-radius: 10px; background-color: #818181; padding: 15px;">
+                    <p style="color: #111111; height: 35px;"> Query: ` + queryString + ` | Excluded Columns:` + excludeString + `</p>
+                  </div>`
+  
+    document.getElementById('table').innerHTML = `
+                  <div style="margin: 100px;margin-left: 250px;" class="loader"></div>`
+
+    $.post({
+      type: "POST",
+      url: "/query",
+      data: formData,
+      processData: false,
+      contentType: false,
+      success(response){
+        var div = document.getElementById('table');
+        div.innerHTML = response
+        $('#table').DataTable();
+      }
+    });
+  };
+
+  var excludeString = excludeList.join(', ')
+
+  queryString = 'SELECT * FROM property WHERE' + queryString +';'
+
+  let formData = new FormData();
   formData.append('query_string', queryString)
 
-  var controls = document.getElementById('queryControls')
+  let controls = document.getElementById('queryControls')
   controls.className = ''
   controls.style = ''
   controls.innerHTML = `
                 <div style="margin-bottom: 15px; border-radius: 10px; background-color: #818181; padding: 15px;">
-                  <p style="color: #111111; height: 35px;"> Query: ` + queryString + `</p>
+                  <p style="color: #111111; height: 35px;"> Query: ` + queryString + ` | Excluded Columns:` + excludeString + `</p>
                 </div>`
 
   document.getElementById('table').innerHTML = `
                 <div style="margin: 100px;margin-left: 250px;" class="loader"></div>`
+
+
+  console.log(queryString)
 
   $.post({
     type: "POST",

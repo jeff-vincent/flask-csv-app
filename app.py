@@ -177,10 +177,10 @@ def query():
     #------------------- Parse Request -----------------------#
     query_string = request.form['query_string']
 
-    sql_query = 'SELECT * FROM property WHERE' + query_string
+
 
     Session = helpers.get_session()
-    estates = Session.execute(sql_query)
+    estates = Session.execute(query_string)
 
     # Populate the table
     table = tabledef.ItemTable(estates, table_id='table')

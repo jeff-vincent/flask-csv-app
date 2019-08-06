@@ -5,11 +5,23 @@
 {% include "sidebar.html" %}
 
   <div class="main">
-      {% include "selector.html" %}
+    <div class="container">
+      <div class="row">
+        <div class="col-13">
+          {% include "selector.html" %}
+      </div>
+
+        <div id="queryControls" class="jumbotron"style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 5px;  height: 250px; width: 290px; margin-left: 50px; background-color: gray"><h5 style="color: #373944">Filter Columns</h5>
+          {% include "columnSelector.html" %}
+        </div>
+
+        </div>
+        </div>
       <table id="table"></table>
-  </div>
+
 
 {% endblock %}
+</div>
 {% block scripts %}
 <script src="../static/js/scripts.js"></script>
 {% endblock %}
