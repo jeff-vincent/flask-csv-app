@@ -71,7 +71,7 @@ const submitQuery = function() {
   };
   let queryString = ' ' + queryList.join(' ')
 
-  console.log(queryString)
+  
 
   var excludeList = []
   for (let i = 1; i < 4; i++){
@@ -95,17 +95,22 @@ const submitQuery = function() {
       }
     }
     includeString = includeList.join(', ');
-    queryStringLimited = 'SELECT ' + includeString + ' FROM property;'
+    if (includeString == ''){
+      includeString = '*'
+    }
+    queryStringLimited = 'SELECT ' + includeString + ' FROM property WHERE' + queryString + ';';
 
     let formData = new FormData();
     formData.append('query_string', queryStringLimited)
+
+    console.log(queryStringLimited)
 
     let controls = document.getElementById('queryControls')
     controls.className = ''
     controls.style = ''
     controls.innerHTML = `
-                  <div style="margin-bottom: 15px; border-radius: 10px; background-color: #818181; padding: 15px;">
-                    <p style="color: #111111; height: 35px;"> Query: ` + queryString + ` | Excluded Columns:` + excludeString + `</p>
+                  <div style="margin-bottom: 15px; border-radius: 5px; background-color: #818181; padding: 5px;">
+                    <p style="margin-left: 20px; color: #373944; height: 25px;"> Query: ` + queryString + ` | Excluded Columns: ` + excludeString + `</p>
                   </div>`
   
     document.getElementById('table').innerHTML = `
@@ -136,15 +141,15 @@ const submitQuery = function() {
   controls.className = ''
   controls.style = ''
   controls.innerHTML = `
-                <div style="margin-bottom: 15px; border-radius: 10px; background-color: #818181; padding: 15px;">
-                  <p style="color: #111111; height: 35px;"> Query: ` + queryString + ` | Excluded Columns:` + excludeString + `</p>
+                <div style="margin-bottom: 15px; border-radius: 5px; background-color: #818181; padding: 5px;">
+                  <p style="margin-left: 20px; color: #373944; height: 35px;"> Query: ` + queryString + ` | Excluded Columns: ` + excludeString + `</p>
                 </div>`
 
   document.getElementById('table').innerHTML = `
                 <div style="margin: 100px;margin-left: 250px;" class="loader"></div>`
 
 
-  console.log(queryString)
+  
 
   $.post({
     type: "POST",
