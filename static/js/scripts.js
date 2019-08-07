@@ -125,7 +125,24 @@ const submitQuery = function() {
       success(response){
         var div = document.getElementById('table');
         div.innerHTML = response
-        $('#table').DataTable();
+        $('table th').each( function () {
+          var title = $(this).text();
+          console.log(title)
+          $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+      } );
+
+        var table = $('#table').DataTable();
+        table.columns().every( function () {
+          var that = this;
+   
+          $( 'input', this.header() ).on( 'keyup change clear', function () {
+              if ( that.search() !== this.value ) {
+                  that
+                      .search( this.value )
+                      .draw();
+              }
+          } );
+      } );
       }
     });
   };
@@ -136,7 +153,7 @@ const submitQuery = function() {
 
   let formData = new FormData();
   formData.append('query_string', queryString)
-
+  console.log('162')
   let controls = document.getElementById('queryControls')
   controls.className = ''
   controls.style = ''
@@ -151,18 +168,19 @@ const submitQuery = function() {
 
   
 
-  $.post({
-    type: "POST",
-    url: "/query",
-    data: formData,
-    processData: false,
-    contentType: false,
-    success(response){
-      var div = document.getElementById('table');
-      div.innerHTML = response
-      $('#table').DataTable();
-    }
-  });
+  // $.post({
+  //   type: "POST",
+  //   url: "/query",
+  //   data: formData,
+  //   processData: false,
+  //   contentType: false,
+  //   success(response){
+  //     var div = document.getElementById('table');
+  //     div.innerHTML = response
+  //     $('#table').DataTable();
+  //     console.log('187')
+  //   }
+  // });
 };
 
 $(document).ready(function() {
@@ -200,6 +218,7 @@ $(document).ready(function() {
     });
   });
 });
+
 
 // Open or Close mobile & tablet menu
 // https://github.com/jgthms/bulma/issues/856

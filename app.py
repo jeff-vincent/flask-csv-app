@@ -180,10 +180,10 @@ def query():
 
 
     Session = helpers.get_session()
-    estates = Session.execute(query_string)
+    data = Session.execute(query_string)
 
     # Populate the table
-    table = tabledef.ItemTable(estates, table_id='table')
+    table = tabledef.ItemTable(data, table_id='table')
     html = table.__html__()
 
     return html
