@@ -53,6 +53,10 @@ var submitData = function() {
   });
 };
 
+const toggleColumn = function(id){
+
+}
+
 const submitQuery = function() {
   var columnList = []
   $("#q1 > option").each(function() {
@@ -62,7 +66,7 @@ const submitQuery = function() {
   const table = document.getElementById('table')
   table.innerHTML = ''
   let queryList = []
-  for (let i = 1; i < 12; i++){
+  for (let i = 1; i < 8; i++){
     const id = 'q' + i
     const value = document.getElementById(id).value
     if (value != '') {
@@ -71,46 +75,17 @@ const submitQuery = function() {
   };
   let queryString = ' ' + queryList.join(' ')
 
-  
-
-  var excludeList = []
-  for (let i = 1; i < 4; i++){
-    const id = 'c' + i
-    const value = document.getElementById(id).value
-    if (value != '') {
-      excludeList.push(value);
-    };
-  };
-
-  if (excludeList != []) {
-    includeList = []
-    for (let i = 0; i < excludeList.length; i++){
-      for (let ii = 0; ii < columnList.length; ii++){
-        if (excludeList[i] == columnList[ii]){
-          continue
-        }
-        else {
-          includeList.push(columnList[ii])
-        }
-      }
-    }
-    includeString = includeList.join(', ');
-    if (includeString == ''){
-      includeString = '*'
-    }
-    queryStringLimited = 'SELECT ' + includeString + ' FROM property WHERE' + queryString + ';';
+    queryString = 'SELECT * FROM property WHERE' + queryString + ';';
 
     let formData = new FormData();
-    formData.append('query_string', queryStringLimited)
-
-    console.log(queryStringLimited)
+    formData.append('query_string', queryString)
 
     let controls = document.getElementById('queryControls')
     controls.className = ''
     controls.style = ''
     controls.innerHTML = `
-                  <div style="margin-bottom: 15px; border-radius: 5px; background-color: #818181; padding: 5px;">
-                    <p style="margin-left: 20px; color: #373944; height: 25px;"> Query: ` + queryString + ` | Excluded Columns: ` + excludeString + `</p>
+                  <div style="width: auto; height: 24px; border-radius: 5px; background-color: #818181;">
+                    <p style="margin-left: 20px; color: #373944; height: 10px;"> Query: ` + queryString + `</p>
                   </div>`
   
     document.getElementById('table').innerHTML = `
@@ -123,15 +98,24 @@ const submitQuery = function() {
       processData: false,
       contentType: false,
       success(response){
+        //response is html, so it can go straight in the div
         var div = document.getElementById('table');
         div.innerHTML = response
+
+        //add search field to columns before instantiating DataTables 
         $('table th').each( function () {
           var title = $(this).text();
           console.log(title)
           $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
       } );
-
-        var table = $('#table').DataTable();
+        //instantiate table
+        var table = $('#table').DataTable( {
+          //access dom node for hide/show buttons
+          "dom": '<"toolbar">frtip',
+          "width": "80%",
+          "scrollX": true,
+        });
+        //iterate over columns and add search functionality
         table.columns().every( function () {
           var that = this;
    
@@ -142,46 +126,24 @@ const submitQuery = function() {
                       .draw();
               }
           } );
-      } );
+
+          function toggleColumn(id){
+            table.column()
+          }
+
+          var buttonList = []
+          for (var i = 0; i < columnList.length; i++){
+            buttonString = '<button class="btn" id="' + columnList[i] + '"onclick="toggleColumn(this.id)">' + columnList[i] + '</button>'
+            buttonList.push(buttonString)
+          }
+          buttons = buttonList.join("")
+          //template literals work
+          $("div.toolbar").html(buttons);   
+        });
       }
     });
   };
 
-  var excludeString = excludeList.join(', ')
-
-  queryString = 'SELECT * FROM property WHERE' + queryString +';'
-
-  let formData = new FormData();
-  formData.append('query_string', queryString)
-  console.log('162')
-  let controls = document.getElementById('queryControls')
-  controls.className = ''
-  controls.style = ''
-  controls.innerHTML = `
-                <div style="margin-bottom: 15px; border-radius: 5px; background-color: #818181; padding: 5px;">
-                  <p style="margin-left: 20px; color: #373944; height: 35px;"> Query: ` + queryString + ` | Excluded Columns: ` + excludeString + `</p>
-                </div>`
-
-  document.getElementById('table').innerHTML = `
-                <div style="margin: 100px;margin-left: 250px;" class="loader"></div>`
-
-
-  
-
-  // $.post({
-  //   type: "POST",
-  //   url: "/query",
-  //   data: formData,
-  //   processData: false,
-  //   contentType: false,
-  //   success(response){
-  //     var div = document.getElementById('table');
-  //     div.innerHTML = response
-  //     $('#table').DataTable();
-  //     console.log('187')
-  //   }
-  // });
-};
 
 $(document).ready(function() {
   
