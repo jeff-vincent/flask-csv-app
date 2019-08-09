@@ -22,7 +22,7 @@
   </div>
   <div class="col-sm-4">
 
-  <div class="card" style="  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  <div class="card" id="setMappingCard"style="  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   width: 30rem; margin-bottom: 15px; margin-left: -65px; background-color: #E9ECEF">
       <div class="card-body">
 
@@ -54,7 +54,12 @@
         </div>
 
 </div>
+<div class="row ml-3 mt-3 mb-3">
+      <button class="btn-secondary mr-3" onclick="showInputRows()">Core CSV</button>
 
+      <button class="btn-secondary" onclick="hideInputRows()">Unique CSV</button>
+
+</div>
  {% include "inputRows.html" %}
 </div>
 </div>

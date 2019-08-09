@@ -183,7 +183,7 @@ def query():
     data = Session.execute(query_string)
 
     # Populate the table
-    table = tabledef.ItemTable(data, table_id='table')
+    table = tabledef.ItemTable(data, table_id='table', classes='table')
     html = table.__html__()
 
     return html

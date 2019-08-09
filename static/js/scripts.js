@@ -24,6 +24,21 @@ var login = function() {
   });
 };
 
+var showInputRows = function(){
+  inputRows = document.getElementById('inputRows')
+  setMappingCard = document.getElementById('setMappingCard')
+  inputRows.className=""
+  setMappingCard.className="card"
+}
+
+var hideInputRows = function(){
+  inputRows = document.getElementById('inputRows')
+  setMappingCard = document.getElementById('setMappingCard')
+  inputRows.className="hidden"
+  setMappingCard.className="hidden"
+
+}
+
 var submitData = function() {
 
   var formData = new FormData();
@@ -80,6 +95,7 @@ const submitQuery = function() {
     let formData = new FormData();
     formData.append('query_string', queryString)
 
+
     let controls = document.getElementById('queryControls')
     controls.className = ''
     controls.style = ''
@@ -88,7 +104,7 @@ const submitQuery = function() {
                     <p style="margin-left: 20px; color: #373944; height: 10px;"> Query: ` + queryString + `</p>
                   </div>`
   
-    document.getElementById('table').innerHTML = `
+    document.getElementById('gray-spacer').innerHTML = `
                   <div style="margin: 100px;margin-left: 250px;" class="loader"></div>`
 
     $.post({
@@ -98,6 +114,11 @@ const submitQuery = function() {
       processData: false,
       contentType: false,
       success(response){
+
+        let graySpacer = document.getElementById('gray-spacer')
+        graySpacer.style = ''
+        graySpacer.className = ''
+        graySpacer.innerHTML = ''
         //response is html, so it can go straight in the div
         var div = document.getElementById('table');
         div.innerHTML = response
@@ -131,11 +152,12 @@ const submitQuery = function() {
             table.column()
           }
 
-          var buttonList = []
+          var buttonList = ['<div style="margin-left: 30px;" class="btn-grp" role="group">']
           for (var i = 0; i < columnList.length; i++){
             buttonString = '<button class="btn" id="' + columnList[i] + '"onclick="toggleColumn(this.id)">' + columnList[i] + '</button>'
             buttonList.push(buttonString)
           }
+          buttonList.push('</div>')
           buttons = buttonList.join("")
           //template literals work
           $("div.toolbar").html(buttons);   
