@@ -8,7 +8,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from flask_table import Table, Col
 
 # Local
-SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:password@localhost/csvdb'
+SQLALCHEMY_DATABASE_URI = 'sqlite:///accounts.db'
 
 # Heroku
 #SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
