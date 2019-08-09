@@ -100,7 +100,7 @@ const submitQuery = function() {
     controls.className = ''
     controls.style = ''
     controls.innerHTML = `
-                  <div style="width: auto; height: 24px; border-radius: 5px; background-color: #818181;">
+                  <div style="margin-right: 22px; height: 24px; border-radius: 3px; background-color: #818181;">
                     <p style="margin-left: 20px; color: #373944; height: 10px;"> Query: ` + queryString + `</p>
                   </div>`
   
@@ -123,11 +123,11 @@ const submitQuery = function() {
         var div = document.getElementById('table');
         div.innerHTML = response
 
-        //add search field to columns before instantiating DataTables 
+        //add search field and button to columns before instantiating DataTables 
         $('table th').each( function () {
           var title = $(this).text();
           console.log(title)
-          $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+          $(this).html( '<button class="btn btn-secondary btn-sm" style="margin-bottom:12px;"data-toggle="popover" onclick="showMore(this.value)">'+title+'</button><input type="text" placeholder="Search '+title+'" />' );
       } );
         //instantiate table
         var table = $('#table').DataTable( {
@@ -150,17 +150,7 @@ const submitQuery = function() {
 
           function toggleColumn(id){
             table.column()
-          }
-
-          var buttonList = ['<div style="margin-left: 30px;" class="btn-grp" role="group">']
-          for (var i = 0; i < columnList.length; i++){
-            buttonString = '<button class="btn" id="' + columnList[i] + '"onclick="toggleColumn(this.id)">' + columnList[i] + '</button>'
-            buttonList.push(buttonString)
-          }
-          buttonList.push('</div>')
-          buttons = buttonList.join("")
-          //template literals work
-          $("div.toolbar").html(buttons);   
+          }   
         });
       }
     });
