@@ -100,7 +100,7 @@ const submitQuery = function() {
     controls.className = ''
     controls.style = ''
     controls.innerHTML = `
-                  <div style="margin-right: 22px; height: 24px; border-radius: 3px; background-color: #818181;">
+                  <div style="margin-right: 282px; height: 24px; border-radius: 3px; background-color: #818181;">
                     <p style="margin-left: 20px; color: #373944; height: 10px;"> Query: ` + queryString + `</p>
                   </div>`
   
@@ -135,6 +135,19 @@ const submitQuery = function() {
           "dom": '<"toolbar">frtip',
           "width": "80%",
           "scrollX": true,
+          "buttons": [
+            {
+                "extend": 'columnVisibility',
+                "text": 'Show all',
+                "visibility": true
+            },
+            {
+                "extend": 'columnVisibility',
+                "text": 'Hide all',
+                "visibility": false
+            }
+        ]
+    
         });
         //iterate over columns and add search functionality
         table.columns().every( function () {
