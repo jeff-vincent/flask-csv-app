@@ -73,10 +73,7 @@ const toggleColumn = function(id){
 }
 
 const submitQuery = function() {
-  var columnList = []
-  $("#q1 > option").each(function() {
-    columnList.push(this.value);
-  });
+
 
   const table = document.getElementById('table')
   table.innerHTML = ''
@@ -115,59 +112,36 @@ const submitQuery = function() {
       contentType: false,
       success(response){
 
-        let graySpacer = document.getElementById('gray-spacer')
-        graySpacer.style = ''
-        graySpacer.className = ''
-        graySpacer.innerHTML = ''
-        //response is html, so it can go straight in the div
-        var div = document.getElementById('table');
-        div.innerHTML = response
-
-        //add search field and button to columns before instantiating DataTables 
-        $('table th').each( function () {
-          var title = $(this).text();
-          console.log(title)
-          $(this).html( '<button class="btn btn-secondary btn-sm" style="margin-bottom:12px;"data-toggle="popover" onclick="showMore(this.value)">'+title+'</button><input type="text" placeholder="Search '+title+'" />' );
-      } );
-        //instantiate table
-        var table = $('#table').DataTable( {
-          //access dom node for hide/show buttons
-          "dom": '<"toolbar">frtip',
-          "width": "80%",
-          "scrollX": true,
-          "buttons": [
-            {
-                "extend": 'columnVisibility',
-                "text": 'Show all',
-                "visibility": true
-            },
-            {
-                "extend": 'columnVisibility',
-                "text": 'Hide all',
-                "visibility": false
-            }
-        ]
+        var columnDefs = [
+          {headerName: "Make", field: "make", sortable: true, filter: true,checkboxSelection: true, groupSelectsChildren: true, rowSelection: 'multiple'},
+          {headerName: "Model", field: "model", sortable: true, filter: true,checkboxSelection: true, groupSelectsChildren: true, rowSelection: 'multiple'},
+          {headerName: "Price", field: "price", sortable: true, filter: true,checkboxSelection: true, groupSelectsChildren: true, rowSelection: 'multiple'}
+        ];
+        
+        // specify the data
+        var rowData = [
+          {make: "Toyota", model: "Celica", price: 35000},
+          {make: "Ford", model: "Mondeo", price: 32000},
+          {make: "Porsche", model: "Boxter", price: 72000}
+        ];
+        
+        // let the grid know which columns and what data to use
+        var gridOptions = {
+          columnDefs: columnDefs,
+          rowData: rowData
+        };
     
-        });
-        //iterate over columns and add search functionality
-        table.columns().every( function () {
-          var that = this;
-   
-          $( 'input', this.header() ).on( 'keyup change clear', function () {
-              if ( that.search() !== this.value ) {
-                  that
-                      .search( this.value )
-                      .draw();
-              }
-          } );
-
-          function toggleColumn(id){
-            table.column()
+      // lookup the container we want the Grid to use
+      var div = document.getElementById('gray-spacer')
+      div.className = ''
+      div.innerHTML = `<div id="ag-grid" style="height: 800px;width:1150px;" class="ag-theme-balham"></div>`
+      var eGridDiv = document.getElementById('ag-grid');
+    
+      // create the grid passing in the div to use together with the columns & data we want to use
+      new agGrid.Grid(eGridDiv, gridOptions);
           }   
         });
-      }
-    });
-  };
+      };
 
 
 $(document).ready(function() {
