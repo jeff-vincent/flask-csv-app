@@ -5,10 +5,13 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
-from flask_table import Table, Col
+from flask_marshmallow import Marshmallow
+import app
+from app import app
 
 # Local
 SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:password@localhost/csvdb'
+ma = Marshmallow(app)
 
 # Heroku
 #SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
@@ -53,20 +56,11 @@ class Property(Base):
     def __repr__(self):
         return '<Property %r>' % self.id
 
-class ItemTable(Table):
-    county = Col('County')
-    municipality_name = Col('Municipality Name')
-    block = Col('Block')
-    lot = Col('Lot')
-    qualifier = Col('Qualifier')
-    owners_name = Col('Owner\'s Name')
-    owners_city = Col('Owner\'s City')
-    owners_state = Col('Owner\'s State')
-    owners_zip = Col('Owner\'s Zip')
-    owners_mailing_address = Col('Owner\'s Mailing Address')
-
-
+class PropertySchema(ma.ModelSchema):
+    class Meta:
+        model = Property
 
     
 engine = db_connect()  # Connect to database
 Base.metadata.create_all(engine)  # Create models
+property_schema = PropertySchema(many=True)

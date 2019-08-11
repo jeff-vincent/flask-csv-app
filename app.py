@@ -3,7 +3,7 @@
 from scripts import tabledef
 from scripts import forms
 from scripts import helpers
-from flask import Flask, redirect, url_for, render_template, request, session
+from flask import Flask, redirect, url_for, render_template, request, session, jsonify
 import json
 import sys
 import os
@@ -182,11 +182,10 @@ def query():
     Session = helpers.get_session()
     data = Session.execute(query_string)
 
-    # Populate the table
-    table = tabledef.ItemTable(data, table_id='table', classes=['table', 'lightgray'])
-    html = table.__html__()
+    data = tabledef.property_schema.dump(data)
+    return jsonify(data.data)
 
-    return html
+
 
 
 
