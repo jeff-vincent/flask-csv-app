@@ -68,12 +68,27 @@ var submitData = function() {
   });
 };
 
-const toggleColumn = function(id){
+var getMapping = function() {
 
-}
+  var formData = new FormData();
+  formData.append('file', $('#fileInput')[0].files[0]);
+
+  
+  $.post({
+    type: "POST",
+    url: "/mapping",
+    data: formData,
+    processData: false,
+    contentType: false,
+    success(response){
+      div = document.getElementById('inputRows');
+      div.innerHTML = response
+
+    }
+  });
+};
 
 const submitQuery = function() {
-
 
   const table = document.getElementById('table')
   table.innerHTML = ''
@@ -113,7 +128,11 @@ const submitQuery = function() {
       success(response){
         console.log(response)
         var columnDefs = [
-          {headerName: "Lot", field: "lot", sortable: true, filter: "agTextColumnFilter", groupSelectsChildren: true, rowSelection: 'multiple', autoSize:true},  
+          {headerName: "County", field: "county", sortable: true, filter: "agTextColumnFilter", groupSelectsChildren: true, rowSelection: 'multiple', autoSize:true},
+          {headerName: "Lot", field: "lot", sortable: true, filter: "agTextColumnFilter", groupSelectsChildren: true, rowSelection: 'multiple', autoSize:true},
+          {headerName: "Municipality Name", field: "municipality_name", sortable: true, filter: "agTextColumnFilter", groupSelectsChildren: true, rowSelection: 'multiple', autoSize:true},
+          {headerName: "Block", field: "block", sortable: true, filter: "agTextColumnFilter", groupSelectsChildren: true, rowSelection: 'multiple', autoSize:true},
+            
         ];
         
         // specify the data

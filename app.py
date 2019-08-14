@@ -11,10 +11,6 @@ import csv, io, requests
 
 app = Flask(__name__)
 
-# Heroku
-#from flask_heroku import Heroku
-#heroku = Heroku(app)
-
 # ======== Routing =========================================================== #
 # -------- Login ------------------------------------------------------------- #
 @app.route('/', methods=['GET', 'POST'])
@@ -79,7 +75,6 @@ def settings():
     return redirect(url_for('login'))
 
 
-
 # -----------Upload View------------------------------------------------------------#
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
@@ -90,7 +85,6 @@ def upload():
             csv_input = csv.DictReader(stream)
             items = []
             for row in csv_input:
-
 
                 #--------------------Parse Data----------------------#
                 property_location = row['Property Location']
@@ -112,6 +106,7 @@ def upload():
 
 
                 #-----------------Insert Clean Record into MySQL--------------#
+
                 Session = helpers.get_session()
                 _property = tabledef.Property(
                     county=county,
@@ -127,43 +122,8 @@ def upload():
                 Session.add(_property)
                 Session.commit()
                 Session.close()
-
-                errors = []
-                # Session = helpers.get_session()
-                # try:
-                #     q = Session.query(Property).filter(Property.name != 'some name')
-                #     Session.execute(q)
-                # except:
-                #     errors.append(owners_mailing_address)
-                #     continue
-                # with open('log.txt', 'w+') as log:
-                #     error_string = ''.join(errors)
-                #     log.write(error_string)
-
-
-                #------------------- Flask_Table -----------------------#
-
-                #-----------Sample Data-------------------#
-                # Creating a dict to pass to Flask Tables
-                estate = dict(
-                    county=row['County'], 
-                    municipality_name=row['Municipality Name'],
-                    block=row['Block'],
-                    lot=row['Lot'],
-                    qualifier=row['Qualifier'],
-                    owners_name=row['Owner(s) Name'],
-                    owners_city=row['Owner(s) City'],
-                    owners_state=row['Owner(s) State'],
-                    owners_zip=row['Owner(s) Zip'],
-                    owners_mailing_address=row['Owner(s) Mailing Address'])
                 
-                items.append(estate)
-
-                # Populate the table
-                table = tabledef.ItemTable(items)
-                html = table.__html__()
-
-            return html
+            return '<h1 style="color: green;">Upload Successful</h1>'
         else:
             user = helpers.get_user()
             return render_template('upload.html', user=user)
@@ -177,18 +137,29 @@ def query():
     #------------------- Parse Request -----------------------#
     query_string = request.form['query_string']
 
-
-
     Session = helpers.get_session()
     data = Session.execute(query_string)
 
     data = tabledef.property_schema.dump(data)
     return jsonify(data.data)
 
-
-
-
-
+#----------------------- Get CSV Mapping ------------------------------------#
+@app.route('/mapping', methods=['POST'])
+def mapping():
+    if session.get('logged_in'):
+        if request.method == 'POST':
+            file = request.files['file']
+            stream = io.StringIO(file.stream.read().decode("UTF8"), newline=None)
+            csv_input = csv.reader(stream)
+            for row in csv_input:
+                header_list = row
+                break
+            full_string = ''
+            for header in header_list:
+                html = '<div>{}</div><select><option value="test">The Presets will go here.</option><option value="test">And here.</option></select>'.format(header)
+                full_string += html
+            return full_string
+    return redirect(url_for('login'))
 
 
 #--------------------- Config View -------------------------------------------#
