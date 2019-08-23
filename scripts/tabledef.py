@@ -6,15 +6,14 @@ from sqlalchemy import create_engine
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from flask_marshmallow import Marshmallow
-import app
-from app import app
+from main import app
+
 
 # Local
-SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:password@localhost/csvdb'
+SQLALCHEMY_DATABASE_URI = os.environ['SQLALCHEMY_DATABASE_URI']
 ma = Marshmallow(app)
 
-# Heroku
-#SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+
 
 Base = declarative_base()
 
@@ -56,7 +55,7 @@ class Property(Base):
     def __repr__(self):
         return '<Property %r>' % self.id
 
-class PropertySchema(ma.ModelSchema):
+class PropertySchema(ma.Schema):
     class Meta:
         model = Property
 

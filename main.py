@@ -1,15 +1,22 @@
 # -*- coding: utf-8 -*-
-
-from scripts import tabledef
-from scripts import forms
-from scripts import helpers
 from flask import Flask, redirect, url_for, render_template, request, session, jsonify
 import json
 import sys
 import os
 import csv, io, requests
 
+from scripts import forms
+
 app = Flask(__name__)
+app.secret_key = os.urandom(12)
+
+from scripts import tabledef
+from scripts import helpers
+
+
+# Heroku
+#from flask_heroku import Heroku
+#heroku = Heroku(app)
 
 # ======== Routing =========================================================== #
 # -------- Login ------------------------------------------------------------- #
@@ -73,6 +80,7 @@ def settings():
         user = helpers.get_user()
         return render_template('settings.html', user=user)
     return redirect(url_for('login'))
+
 
 
 # -----------Upload View------------------------------------------------------------#
@@ -161,7 +169,6 @@ def mapping():
             return full_string
     return redirect(url_for('login'))
 
-
 #--------------------- Config View -------------------------------------------#
 @app.route('/config', methods=['GET', 'POST'])
 def config():
@@ -169,5 +176,5 @@ def config():
 
 # ======== Main ============================================================== #
 if __name__ == "__main__":
-    app.secret_key = os.urandom(12)  # Generic key for dev purposes only
-    app.run(debug=True, use_reloader=True)
+    
+    app.run()

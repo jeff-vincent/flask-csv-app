@@ -1,0 +1,8 @@
+runtime: python37
+
+env_variables:
+    SQLALCHEMY_DATABASE_URI: >-
+        mysql+pymysql://root@/csvdb?unix_socket=/cloudsql/flask-db-portal:us-central1:property-csv-db
+
+beta_settings:
+    cloud_sql_instances: flask-db-portal:us-central1:property-csv-db

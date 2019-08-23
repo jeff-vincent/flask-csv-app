@@ -5,3 +5,5 @@ bcrypt
 requests
 flask-heroku
 gunicorn
+flask-marshmallow
+pymysql
