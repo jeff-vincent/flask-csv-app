@@ -4,6 +4,7 @@ import json
 import sys
 import os
 import csv, io, requests
+import logging
 
 from scripts import forms
 
@@ -13,10 +14,6 @@ app.secret_key = os.urandom(12)
 from scripts import tabledef
 from scripts import helpers
 
-
-# Heroku
-#from flask_heroku import Heroku
-#heroku = Heroku(app)
 
 # ======== Routing =========================================================== #
 # -------- Login ------------------------------------------------------------- #
@@ -149,7 +146,8 @@ def query():
     data = Session.execute(query_string)
 
     data = tabledef.property_schema.dump(data)
-    return jsonify(data.data)
+
+    return jsonify(data)
 
 #----------------------- Get CSV Mapping ------------------------------------#
 @app.route('/mapping', methods=['POST'])

@@ -3,7 +3,5 @@ WTForms
 SQLAlchemy
 bcrypt
 requests
-flask-heroku
-gunicorn
-flask-marshmallow
+marshmallow
 pymysql

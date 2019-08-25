@@ -5,18 +5,16 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
-from flask_marshmallow import Marshmallow
+from marshmallow import Schema, fields
+
 from main import app
 
 
 # Local
 SQLALCHEMY_DATABASE_URI = os.environ['SQLALCHEMY_DATABASE_URI']
-ma = Marshmallow(app)
-
 
 
 Base = declarative_base()
-
 
 def db_connect():
     """
@@ -55,9 +53,10 @@ class Property(Base):
     def __repr__(self):
         return '<Property %r>' % self.id
 
-class PropertySchema(ma.Schema):
+
+class PropertySchema(Schema):
     class Meta:
-        model = Property
+        fields = ('lot', 'county', 'municipality_name')
 
     
 engine = db_connect()  # Connect to database
