@@ -92,17 +92,17 @@ const submitQuery = function() {
 
   const table = document.getElementById('table')
   table.innerHTML = ''
-  let queryList = []
-  for (let i = 1; i < 8; i++){
-    const id = 'q' + i
-    const value = document.getElementById(id).value
-    if (value != '') {
-      queryList.push(value);
-    };
-  };
-  let queryString = ' ' + queryList.join(' ')
+//   let queryList = []
+//   for (let i = 1; i < 8; i++){
+//     const id = 'q' + i
+//     const value = document.getElementById(id).value
+//     if (value != '') {
+//       queryList.push(value);
+//     };
+//   };
+//   let queryString = ' ' + queryList.join(' ')
 
-    queryString = 'SELECT * FROM property WHERE' + queryString + ';';
+    queryString = 'SELECT * FROM property;';
 
     let formData = new FormData();
     formData.append('query_string', queryString)
