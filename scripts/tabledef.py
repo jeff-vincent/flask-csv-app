@@ -48,14 +48,14 @@ class Property(Base):
     qualifier = Column(String(50))
     prop_class = Column(String(50))
     county = Column(String(50))
-    owners_mailing_address = Column(String(100))
+    municipal_name = Column(String(100))
     property_location = Column(String(50))
     owner_name = Column(String(50))
     owner_st_address = Column(String(50)) 
     owner_city_state = Column(String(100))
     owner_zip_code = Column(String(50))
-    land_value = Column(String(100))
-    imprvt_value = Column(String(50))
+    land_val = Column(String(100))
+    imprvt_val = Column(String(50))
     net_value = Column(String(50))
     last_yr_tx = Column(String(50))
     bldg_desc = Column(String(1100))
@@ -67,7 +67,7 @@ class Property(Base):
     prop_use = Column(String(100))
     bldg_class = Column(String(100))
     deed_book = Column(String(100))
-    page = Column(String(100))
+    deed_page = Column(String(100))
     deed_date = Column(String(100))
     yr_constr = Column(String(100))
     sales_code = Column(String(100))
@@ -111,7 +111,7 @@ class Property(Base):
 
 class PropertySchema(Schema):
     class Meta:
-        fields = ('lot', 'county', 'municipality_name')
+        fields = ('x','y','pams_pin','municipal_code','block','lot','qualifier','prop_class','county','municipal_name','property_location','owner_name','owner_st_address','owner_city_state','owner_zip_code','land_val','imprvt_val','net_value','last_yr_tx','bldg_desc','land_desc','calc_acre','add_lots1','add_lots2','fac_name','prop_use','bldg_class','deed_book','deed_page','deed_date','yr_constr','sales_code','sale_price','dwell','comm_dwell','latitude','longitude','accuracy_score','accuracy_type','number','property_street','street','city','state','zipcode','source','summary','delivery_line_1','delivery_line_2','city_name','rdi','precision','dpv_match_code','dpv_footnotes','footnotes','zip_type','carrier_route','dpv_vacant','active','urbanization')
 
     
 engine = db_connect()  # Connect to database
