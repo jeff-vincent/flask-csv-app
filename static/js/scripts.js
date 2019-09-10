@@ -68,29 +68,41 @@ var submitData = function() {
   });
 };
 
-const toggleColumn = function(id){
+var getMapping = function() {
 
-}
+  var formData = new FormData();
+  formData.append('file', $('#fileInput')[0].files[0]);
+
+  
+  $.post({
+    type: "POST",
+    url: "/mapping",
+    data: formData,
+    processData: false,
+    contentType: false,
+    success(response){
+      div = document.getElementById('inputRows');
+      div.innerHTML = response
+
+    }
+  });
+};
 
 const submitQuery = function() {
-  var columnList = []
-  $("#q1 > option").each(function() {
-    columnList.push(this.value);
-  });
 
   const table = document.getElementById('table')
   table.innerHTML = ''
-  let queryList = []
-  for (let i = 1; i < 8; i++){
-    const id = 'q' + i
-    const value = document.getElementById(id).value
-    if (value != '') {
-      queryList.push(value);
-    };
-  };
-  let queryString = ' ' + queryList.join(' ')
+//   let queryList = []
+//   for (let i = 1; i < 8; i++){
+//     const id = 'q' + i
+//     const value = document.getElementById(id).value
+//     if (value != '') {
+//       queryList.push(value);
+//     };
+//   };
+//   let queryString = ' ' + queryList.join(' ')
 
-    queryString = 'SELECT * FROM property WHERE' + queryString + ';';
+    queryString = 'SELECT * FROM property;';
 
     let formData = new FormData();
     formData.append('query_string', queryString)
@@ -114,60 +126,38 @@ const submitQuery = function() {
       processData: false,
       contentType: false,
       success(response){
+        console.log(response)
 
-        let graySpacer = document.getElementById('gray-spacer')
-        graySpacer.style = ''
-        graySpacer.className = ''
-        graySpacer.innerHTML = ''
-        //response is html, so it can go straight in the div
-        var div = document.getElementById('table');
-        div.innerHTML = response
+        //        fields = ('x','y','pams_pin','municipal_code','block','lot','qualifier','prop_class','county','municipal_name','property_location','owner_name','owner_st_address','owner_city_state','owner_zip_code','land_val','imprvt_val','net_value','last_yr_tx','bldg_desc','land_desc','calc_acre','add_lots1','add_lots2','fac_name','prop_use','bldg_class','deed_book','deed_page','deed_date','yr_constr','sales_code','sale_price','dwell','comm_dwell','latitude','longitude','accuracy_score','accuracy_type','number','property_street','street','city','state','zipcode','source','summary','delivery_line_1','delivery_line_2','city_name','rdi','precision','dpv_match_code','dpv_footnotes','footnotes','zip_type','carrier_route','dpv_vacant','active','urbanization')
 
-        //add search field and button to columns before instantiating DataTables 
-        $('table th').each( function () {
-          var title = $(this).text();
-          console.log(title)
-          $(this).html( '<button class="btn btn-secondary btn-sm" style="margin-bottom:12px;"data-toggle="popover" onclick="showMore(this.value)">'+title+'</button><input type="text" placeholder="Search '+title+'" />' );
-      } );
-        //instantiate table
-        var table = $('#table').DataTable( {
-          //access dom node for hide/show buttons
-          "dom": '<"toolbar">frtip',
-          "width": "80%",
-          "scrollX": true,
-          "buttons": [
-            {
-                "extend": 'columnVisibility',
-                "text": 'Show all',
-                "visibility": true
-            },
-            {
-                "extend": 'columnVisibility',
-                "text": 'Hide all',
-                "visibility": false
-            }
-        ]
+        var columnDefs = [
+          {headerName: "X", field: "x", sortable: true, filter: "agTextColumnFilter", groupSelectsChildren: true, rowSelection: 'multiple', autoSize:true},
+          {headerName: "Y", field: "y", sortable: true, filter: "agTextColumnFilter", groupSelectsChildren: true, rowSelection: 'multiple', autoSize:true},
+          {headerName: "pams_pin Name", field: "pams_pin", sortable: true, filter: "agTextColumnFilter", groupSelectsChildren: true, rowSelection: 'multiple', autoSize:true},
+          {headerName: "municipal_code", field: "municipal_code", sortable: true, filter: "agTextColumnFilter", groupSelectsChildren: true, rowSelection: 'multiple', autoSize:true},
+            
+        ];
+        
+        // specify the data
+        var rowData = response;
+        
+        // let the grid know which columns and what data to use
+        var gridOptions = {
+          columnDefs: columnDefs,
+          rowData: rowData
+        };
     
-        });
-        //iterate over columns and add search functionality
-        table.columns().every( function () {
-          var that = this;
-   
-          $( 'input', this.header() ).on( 'keyup change clear', function () {
-              if ( that.search() !== this.value ) {
-                  that
-                      .search( this.value )
-                      .draw();
-              }
-          } );
-
-          function toggleColumn(id){
-            table.column()
+      // lookup the container we want the Grid to use
+      var div = document.getElementById('gray-spacer')
+      div.className = ''
+      div.innerHTML = `<div id="ag-grid" style="height: 800px;width:1150px;" class="ag-theme-balham"></div>`
+      var eGridDiv = document.getElementById('ag-grid');
+    
+      // create the grid passing in the div to use together with the columns & data we want to use
+      new agGrid.Grid(eGridDiv, gridOptions);
           }   
         });
-      }
-    });
-  };
+      };
 
 
 $(document).ready(function() {
